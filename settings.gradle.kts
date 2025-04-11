@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "objectstore"
-include(":library")
