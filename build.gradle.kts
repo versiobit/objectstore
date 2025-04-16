@@ -1,10 +1,12 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    `maven-publish`
+    id("com.vanniktech.maven.publish") version "0.29.0" 
 }
 
 group = "com.versiobit"
-version = "0.1.2"
+version = "0.1.3"
 
 kotlin {
     jvm()
@@ -30,15 +32,36 @@ kotlin {
     }
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/versiobit/objectstore")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    
+    signAllPublications()
+    
+    coordinates(group.toString(), name.toString(), version.toString())
+    
+    pom { 
+        name = "Object Store"
+        description = "A generic abstraction for object-based storage e.g. local filesystems, cloud storage solutions, or other data stores."
+        inceptionYear = "2025"
+        url = "https://github.com/versiobit/objectstore"
+        licenses {
+            license {
+                name = "GNU GENERAL PUBLIC LICENSE Version 3"
+                url = "https://www.gnu.org/licenses/gpl-3.0.html"
+                distribution = "https://www.gnu.org/licenses/gpl-3.0.html"
             }
+        }
+        developers {
+            developer {
+                id = "versiobit"
+                name = "Versiobit"
+                url = "https://github.com/versiobit/"
+            }
+        }
+        scm {
+            url = "https://github.com/versiobit/objectstore"
+            connection = "scm:git:git://github.com/versiobit/objectstore.git"
+            developerConnection = "scm:git:ssh://git@github.com/versiobit/objectstore.git"
         }
     }
 }
