@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.versiobit"
-version = "0.1.3"
+version = "0.1.4"
 
 kotlin {
     jvm()
@@ -26,7 +26,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation("software.amazon.awssdk:s3:2.+")
+                implementation("software.amazon.awssdk:s3:[2.0,)")
             }
         }
     }
