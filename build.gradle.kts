@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.versiobit"
-version = "0.1.4"
+version = file("version.txt").readText().trim()
 
 kotlin {
     jvm()
@@ -37,7 +37,7 @@ mavenPublishing {
     
     signAllPublications()
     
-    coordinates(group.toString(), name.toString(), version.toString())
+    coordinates(group.toString(), name, version.toString())
     
     pom { 
         name = "Object Store"
